@@ -1,0 +1,18 @@
+<a href='/logout'>Logout</a>
+<h1><%=current_user.username%></h1>
+<a href="/<%=current_user.slug%>">Profile</a>
+<br/>
+<p>-------------------------------------------</p>
+<% Blog.all.each do |blog| %>
+  <a href="/<%=blog.user.slug%>"><strong><%=blog.user.username%></strong></a>
+  <p><a href="/<%=blog.user.slug%>/blogs/<%=blog.id%>"><%=blog.title%></a></p>
+  <p><%=blog.content%></p>
+  <% if blog.user == current_user %>
+  <a href="/<%=blog.user.slug%>/blogs/<%=blog.id%>/edit">Edit Post</a>
+  <form method="post" action="/<%=blog.user.slug%>/blogs/<%=blog.id%>/delete">
+    <input type="hidden" id="hidden" name="_method" value="DELETE">
+    <input type="submit" value="delete post">
+  </form>
+  <% end %>
+<p>--------------------------------------------</p>
+<% end %>

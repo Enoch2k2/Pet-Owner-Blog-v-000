@@ -1,0 +1,13 @@
+<% unless locals.empty? %>
+ <%= message %>
+<% end %>
+
+<h1>Create a Pet Owner Account</h1>
+<form method="post" action="/signup">
+  <p>Username: <input type="text" name="username" id="username"></p>
+  <p>Password: <input type="text" name="password" id="password"></p>
+  <p>Email: <input type="text" name="email" id="email"></p>
+  <input type="submit" value="submit">
+</form>
+
+<p>Have an account already? Please <a href='/login'>Log In</a>.</p>

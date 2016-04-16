@@ -1,0 +1,11 @@
+<a href="/<%=@user.slug%>/blogs">Home</a>
+<a href="/logout">Logout</a>
+<h1><a href="/<%=@user.slug%>"><%=@user.username%></a></h1>
+
+<h3>Edit Blog</h3>
+<form method="post" action="/<%=@user.slug%>/blogs/<%=@blog.id%>">
+  <input type="hidden" id="hidden" name="_method" value="PATCH">
+  <p>Edit Title: <input type="text" name="title" placeholder="<%=@blog.title%>" id="title"></p>
+  <p>Edit Content: <textarea type="text" name="content" id="content" placeholder="<%=@blog.content%>"></textarea></p>
+  <input type="submit" value="Edit Post">
+</form>

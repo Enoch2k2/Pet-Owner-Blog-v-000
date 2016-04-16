@@ -1,0 +1,11 @@
+<a href="/<%=@user.slug%>/blogs">Home</a>
+<a href="/logout">Logout</a>
+<h1><a href="/<%=@user.slug%>"><%=@user.username%></a></h1>
+<h3>Edit pet</h3>
+<form method="post" action="/<%=@user.slug%>/pets/<%=@pet.id%>/edit">
+  <input type="hidden" id="hidden" name="_method" value="PATCH">
+  <p>Pet Name: <input type="text" name="name" placeholder="<%=@pet.name%>" id="name"></p>
+  <p>Pet Age: <input type="text" name="age" placeholder="<%=@pet.age%>" id="age"></p>
+  <p>Pet Breed: <input type="text" name="breed" placeholder="<%=@pet.breed%>" id="breed"></p>
+  <input type="submit" value="Edit Pet">
+</form>

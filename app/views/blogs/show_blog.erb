@@ -1,0 +1,13 @@
+<a href="/<%=@user.slug%>/blogs">Home</a>
+<a href="/logout">Logout</a>
+<h1><a href="/<%=@user.slug%>"><%=@user.username%></a></h1>
+
+<h3><%=@blog.title%></h3>
+<p><%=@blog.content%></p>
+<% if @user == current_user %>
+  <a href="<%@user.slug%>/blogs/<%=@blog.id%>/edit">Edit Post</a>
+  <form method="post" action="<%@user.slug%>/blogs/<%=@blog.id%>/delete">
+    <input type="hidden" id="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Post">
+  </form>
+<% end %>

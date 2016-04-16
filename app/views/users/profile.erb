@@ -1,0 +1,47 @@
+<% unless locals.empty? %>
+  <%= message %>
+<% end %>
+<a href="/<%=current_user.slug%>/blogs">Home</a>
+<a href='/logout'>Log Out</a>
+<h1><%=@user.username%></h1>
+<p>--------------------------------------------</p>
+<h3>pet profiles </h3>
+<% if @user == current_user %>
+  <a href='/<%=current_user.slug%>/pets/new'>New Pet</a>
+<% end %>
+<% @user.pets.each do |pet| %>
+  <p>Pet Name: <%=pet.name%>, Age: <%=pet.age%>, Breed: <%=pet.breed%></p>
+  <% if @user == current_user %>
+    <a href="/<%=current_user.slug%>/pets/<%=pet.id%>/edit">Edit Pet</a>
+    <form method="post" action="/<%=@user.slug%>/pets/<%=pet.id%>/delete">
+      <input type="hidden" id="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Delete Pet">
+    </form>
+  <% end %>
+<% end %>
+<% if @user == current_user %>
+<p>--------------------------------------------</p>
+<h3> Create a new Blog </h3>
+<form method="post" action="/<%=current_user.slug%>">
+  <p>Title<input type="text" name="title" id="title"></p>
+  <textarea type="text" name="content" id="content" placeholder="Type Content Here"></textarea>
+  <br/>
+  <input type="submit" value="create post">
+</form>
+<% end %>
+<p>--------------------------------------------</p>
+<h3> blogs </h3>
+<% @user.blogs.each do |blog| %>
+  <p><a href="/<%=@user.slug%>/blogs/<%=blog.id%>"><%=blog.title%></a></p>
+  <p><%=blog.content%></p>
+<% if @user == current_user %>
+  <a href="/<%=@user.slug%>/blogs/<%=blog.id%>/edit">Edit Post</a>
+  <form method="post" action="/<%=@user.slug%>/blogs/<%=blog.id%>/delete">
+    <input type="hidden" id="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Post">
+  </form>
+<% end %>
+<p>--------------------------------------------</p>
+<% end %>
+
+<!-- Get user's post instead of current user *fixed*-->

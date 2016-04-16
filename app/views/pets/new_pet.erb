@@ -1,0 +1,9 @@
+<h1><%=current_user.username%></h1>
+<h3>Create a new Pet</h3>
+<br/>
+<form method='post' action="/<%=current_user.slug%>/pets/new">
+  <p>Pet Name: <input type="text" name="name" id="name"></p>
+  <p>Age: <input type="text" name="age" id="age"></p>
+  <p>Breed: <input type="text" name="breed" id="breed"></p>
+  <input type="submit" value="Create Pet">
+</form>
